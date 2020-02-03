@@ -129,15 +129,6 @@
                             <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
                                 <a href="/dashboard/personnel/all">All Personnel</a>
                             </li>
-                            {{-- <li class="{{(request()->segment(3) == 'senior') ? 'active' : ''}}">
-                                <a href="/dashboard/personnel/senior">Senior Officers</a>
-                            </li>
-                            <li class="{{(request()->segment(3) == 'junior') ? 'active' : ''}}">
-                                <a href="/dashboard/personnel/junior">Junior Officers</a>
-                            </li>
-                            <li class="{{(request()->segment(3) == 'civilian') ? 'active' : ''}}">
-                                <a href="/dashboard/personnel/civilian">Civilian Staff</a>
-                            </li> --}}
                         </ul>
                         </div>
                     </li>

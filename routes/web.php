@@ -20,6 +20,8 @@
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'LandingController@index')->name('landing');
+Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('/register', 'Auth\RegisterController@register')->name('register_submit');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
