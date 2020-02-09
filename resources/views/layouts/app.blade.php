@@ -119,15 +119,21 @@
                     <ul class="collapsible collapsible-accordion">
                     <li class="{{ request()->segment(2) == 'persnnel' ? 'active' : '' }}">
                         <a style="padding:0 32px;" class="collapsible-header">
-                            <i class="material-icons">folder_shared</i>PERSONNEL FILES<i class="material-icons right">arrow_drop_down</i>
+                            <i class="material-icons">people</i>USERS<i class="material-icons right">arrow_drop_down</i>
                         </a>
                         <div class="collapsible-body">
                         <ul>
                             <li class="{{(request()->segment(3) == 'create') ? 'active' : ''}}">
-                                <a href="/dashboard/personnel/create">Open New</a>
+                                <a href="/dashboard/administrator/users/create">Create new User</a>
                             </li>
                             <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
-                                <a href="/dashboard/personnel/all">All Personnel</a>
+                                <a href="/dashboard/administrator/users/approved">Approved Users</a>
+                            </li>
+                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                                <a href="/dashboard/administrator/users/pending">Pending Users</a>
+                            </li>
+                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                                <a href="/dashboard/administrator/users/declined">Declined Users</a>
                             </li>
                         </ul>
                         </div>

@@ -44,69 +44,65 @@
 			<form method="POST" action="{{ route('register_submit') }}">
                 @csrf
                 <div class="row">
-                    <div class="form-group col s12">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Fullname') }}</label>
-                        <div class="col-md-6">
-                            <input id="name" type="text" class="validate" name="name" required>
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                    <div class="input-field col s8">
+                        <input id="name" type="text" class="validate" name="name" value="{{ old('name') }}" required>
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <label for="name">{{ __('Fullname') }}</label>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col s12 m6 l6">
-                        <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-                        <div class="col-md-6">
-                            <input id="username" type="text" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-                            @error('username')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                    <div class="col s4">
+                        <label>Select Gender</label>
+                        <select class="browser-default" name="gender">
+                            <option value="" disabled selected>Choose</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        @error('gender')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
-
-                    <div class="form-group col s12 m6 l6">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-                        <div class="col-md-6">
-                            <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                    <div class="input-field col s12 m6 l6">
+                        <input id="username" type="text" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                        @error('username')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <label for="username">{{ __('Username') }}</label>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="form-group col s12 m6 l6">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                        <div class="col-md-6">
-                            <input id="password" type="password" name="password" required>
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                    <div class="input-field col s12 m6 l6">
+                        <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <label for="email">{{ __('E-Mail Address') }}</label>
                     </div>
-                    <div class="form-group col s12 m6 l6">
-                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-                        <div class="col-md-6">
-                            <input id="password-confirm" type="password" name="password_confirmation" required>
-                        </div>
+                    <div class="input-field col s12 m6 l6">
+                        <input id="password" type="password" name="password" required>
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <label for="password">{{ __('Password') }}</label>
                     </div>
-                </div>
-
-                <div class="form-group row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary col s12">
-                            {{ __('Register') }}
-                        </button>
+                    <div class="input-field col s12 m6 l6">
+                        <input id="password-confirm" type="password" name="password_confirmation" required>
+                        <label for="password-confirm">{{ __('Confirm Password') }}</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary col s12">
+                        {{ __('Register') }}
+                    </button>
+                    <div class="col s12 input-field center">
+                        <p>Already have an account? <a href="/">Sign in Here!</a></p>
                     </div>
                 </div>
             </form>

@@ -66,6 +66,9 @@
 				<button class="login_btn btn waves-effect waves-light" type="submit">Sign In
 					<i class="material-icons right">send</i>
 				</button>
+				<div class="col s12 input-field center">
+					<p>Not registered? <a href="{{route('register')}}">Sign up Here!</a></p>
+				</div>
 			</form>
 		</div>
 	</div>

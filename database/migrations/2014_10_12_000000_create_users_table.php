@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('gender')->nullable();
+            $table->integer('isActive')->default(0);
+            $table->integer('isUser')->default(1);
+            $table->integer('isAdmin')->default(0);
             // $table->string('dob')->nullable();
             // $table->string('geoPol')->nullable();
             // $table->integer('soo')->nullable();

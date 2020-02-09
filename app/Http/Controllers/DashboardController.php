@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Redeployment;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Yajra\DataTables\DataTables;
+use Alert;
 
 class DashboardController extends Controller
 {
@@ -26,23 +26,19 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.dashboard');
+        $users = User::where('isActive', 0)->get();
+        if(!auth()->user()->isActive){
+            return 'Admin is yet to approve your account!';
+        }
+        elseif(auth()->user()->isActive == 2){
+            return 'Your approval has been declined';
+        }
+        else{
+            return view('dashboard.dashboard', compact(['users']));
+        }
+        
     }
 
-    public function today()
-    {
-        $redeployments = Redeployment::whereDate('created_at', Carbon::today())->orderBy('created_at', 'DESC')->get();
-        return DataTables::of($redeployments)
-                ->editColumn('created_at', function ($redeployment) {
-                    return $redeployment->created_at->toFormattedDateString();
-                })
-                ->addColumn('view', function($redeployment) {
-                    return '
-                        <a href="/redeployment/'.$redeployment->id.'/edit" style="margin-right:10px;" class="blue-text"><i class="small material-icons">edit</i></a>
-                        <a href="/redeployment/'.$redeployment->id.'/download" class="green-text"><i class="small material-icons">cloud_download</i></a>
-                    ';
-                })
-                ->rawColumns(['view'])
-                ->make();
-    }
+    
+
 }
