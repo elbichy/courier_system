@@ -30,12 +30,29 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::group(['prefix' => 'administrator'], function () {
         Route::group(['prefix' => 'users'], function () {
-            Route::get('/new', 'UsersController@newUser')->name('newUser');
             Route::get('/approved', 'UsersController@approvedUsers')->name('approvedUsers');
-            Route::get('/pending', 'UsersController@declinedUsers')->name('declinedUsers');
-            Route::get('/declined', 'UsersController@approveUser')->name('newUser');
+            Route::get('/pending', 'UsersController@pendingUsers')->name('pendingUsers');
+            Route::get('/declined', 'UsersController@declinedUsers')->name('declinedUsers');
             Route::get('/{user}/approve', 'UsersController@approveUser')->name('approveUser');
             Route::get('/{user}/decline', 'UsersController@declineUser')->name('declineUser');
+            Route::get('/{user}/edit', 'UsersController@editUser')->name('editUser');
+            Route::put('/{user}/update', 'UsersController@updateUser')->name('updateUser');
+            Route::delete('/{user}/delete', 'UsersController@deleteUser')->name('deleteUser');
+        });
+        Route::group(['prefix' => 'delivery'], function () {
+            Route::get('/requests', 'DeliveryController@deliveryRequest')->name('deliveryRequest');
+            Route::get('/completed', 'DeliveryController@deliveryCompleted')->name('deliveryCompleted');
+            Route::get('/cancelled', 'DeliveryController@deliveryCancelled')->name('deliveryCancelled');
+        });
+    });
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::group(['prefix' => 'delivery'], function () {
+            Route::get('/new', 'DeliveryController@deliveryNew')->name('deliveryNew');
+            Route::post('/new', 'DeliveryController@deliveryStore')->name('deliveryStore');
+            Route::get('/requests', 'DeliveryController@deliveryRequest')->name('deliveryRequest');
+            Route::get('/completed', 'DeliveryController@deliveryCompleted')->name('deliveryCompleted');
+            Route::get('/cancelled', 'DeliveryController@deliveryCancelled')->name('deliveryCancelled');
         });
     });
 });

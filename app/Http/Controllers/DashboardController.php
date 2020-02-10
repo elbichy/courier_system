@@ -27,6 +27,7 @@ class DashboardController extends Controller
     public function index()
     {
         $users = User::where('isActive', 0)->get();
+        $deliveries = auth()->user()->deliveries()->get();
         if(!auth()->user()->isActive){
             return 'Admin is yet to approve your account!';
         }
@@ -34,7 +35,7 @@ class DashboardController extends Controller
             return 'Your approval has been declined';
         }
         else{
-            return view('dashboard.dashboard', compact(['users']));
+            return view('dashboard.dashboard', compact(['users', 'deliveries']));
         }
         
     }
