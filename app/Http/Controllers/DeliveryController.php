@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Delivery;
 use Illuminate\Http\Request;
+use Alert;
 
 class DeliveryController extends Controller
 {
@@ -14,17 +16,64 @@ class DeliveryController extends Controller
     public function deliveryNew(){
         return view('dashboard.users.new');
     }
+    public function deliveryStore(Request $request){
+        $delivery = auth()->user()->deliveries()->create([
+            'RefNo' => time() . '-' . auth()->user()->id,
+            'senderName' => $request->senderName,
+            'state' => $request->state,
+            'lga' => $request->lga,
+            'address' => $request->address,
+            'weight' => $request->weight,
+            'cost' => $request->cost,
+            'description' => $request->description
+        ]);
 
-    public function deliveryRequest(){
-        
+        Alert::success('Request placed successfully!', 'Success!')->autoclose(2500);
+        return redirect()->route('deliveryRequest');
     }
 
-    public function deliveryCompleted(){
+    public function deliveryRequest(){
+        $deliveries = Delivery::where('status', 0)->get();
+        return view('dashboard.deliveries.pending', compact(['deliveries']));
+    }
 
+    public function deliveryInprogress(){
+        $deliveries = Delivery::where('status', 1)->get();
+        return view('dashboard.deliveries.Inprogress', compact(['deliveries']));
+    }
+    
+    public function deliveryCompleted(){
+        $deliveries = Delivery::where('status', 2)->get();
+        return view('dashboard.deliveries.completed', compact(['deliveries']));
     }
 
     public function deliveryCancelled(){
+        $deliveries = Delivery::where('status', 3)->get();
+        return view('dashboard.deliveries.cancelled', compact(['deliveries']));
+    }
+    
 
+
+
+
+    public function myDeliveryRequest(){
+        $deliveries = auth()->user()->deliveries()->where('status', 0)->get();
+        return view('dashboard.deliveries.pending', compact(['deliveries']));
+    }
+
+    public function myDeliveryInprogress(){
+        $deliveries = auth()->user()->deliveries()->where('status', 1)->get();
+        return view('dashboard.deliveries.Inprogress', compact(['deliveries']));
+    }
+    
+    public function myDeliveryCompleted(){
+        $deliveries = auth()->user()->deliveries()->where('status', 2)->get();
+        return view('dashboard.deliveries.completed', compact(['deliveries']));
+    }
+
+    public function myDeliveryCancelled(){
+        $deliveries = auth()->user()->deliveries()->where('status', 3)->get();
+        return view('dashboard.deliveries.cancelled', compact(['deliveries']));
     }
     
     

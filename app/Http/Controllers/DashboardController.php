@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Alert;
+use App\Delivery;
 
 class DashboardController extends Controller
 {
@@ -27,7 +28,7 @@ class DashboardController extends Controller
     public function index()
     {
         $users = User::where('isActive', 0)->get();
-        $deliveries = auth()->user()->deliveries()->get();
+        $deliveries = Delivery::where('status', 0)->get();
         if(!auth()->user()->isActive){
             return 'Admin is yet to approve your account!';
         }

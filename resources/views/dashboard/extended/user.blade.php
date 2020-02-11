@@ -8,8 +8,8 @@
 						<i class="material-icons background-round mt-5">folder_shared</i>
 					</div>
 					<div class="col s8 m8 right-align">
-						<h5 class="mb-0">53534</h5>
-						<p class="no-margin">Personnel Files</p>
+						<h5 class="mb-0">0</h5>
+						<p class="no-margin">Pending</p>
 					</div>
 				</div>
 			</div>
@@ -22,7 +22,7 @@
 					</div>
 					<div class="col s8 m8 right-align">
 						<h5 class="mb-0">4534</h5>
-						<p class="no-margin">Policy Files</p>
+						<p class="no-margin">In-progress</p>
 					</div>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 					</div>
 					<div class="col s8 m8 right-align">
 						<h5 class="mb-0">345</h5>
-						<p class="no-margin">File Transactions</p>
+						<p class="no-margin">Cancelled</p>
 					</div>
 				</div>
 			</div>
@@ -58,7 +58,7 @@
 
 {{-- TABLE --}}
 <div class="sectionTableWrap" style="padding-top:0px;">
-	<h6 style="padding:12px; background:#eee; text-align:center; font-weight:bold;">Delivery Requests In-progress</h6>
+	<h6 style="padding:12px; background:#eee; text-align:center; font-weight:bold;">Deliveries In-progress</h6>
 	<table class="highlight responsive-table centered">
 		<thead>
 			<tr>
@@ -81,12 +81,15 @@
 					<td>{{ ucwords($delivery->weight) }}</td>
 					<td>{{ ucwords($delivery->cost) }}</td>
 					<td>
-						<a href="{{ route('approveUser', $delivery->id) }}" class="btn waves-effect green waves-light">Approve</a>
-						<a href="{{ route('declineUser', $delivery->id) }}" class="btn waves-effect red waves-light">Decline</a>
+						@if($delivery->status == 1)
+						<a href="{{ route('approveUser', $delivery->id) }}" class="btn waves-effect green waves-light">Reciept</a>
+						@endif
+
+						<a href="{{ route('declineUser', $delivery->id) }}" class="btn waves-effect red waves-light">Cancel</a>
 					</td>
 				</tr>
 			@endforeach
-			@if($users->count() < 1)
+			@if($deliveries->count() < 1)
 				<tr>
 					<td colspan="7" style="text-align:center;">No Data Available</td>
 				</tr>

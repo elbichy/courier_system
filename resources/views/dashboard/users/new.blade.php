@@ -36,7 +36,7 @@
 								<label for="lga">LGA</label>
 							</div>
 							{{-- Address --}}
-							<div class="input-field col s12 l9">
+							<div class="input-field col s12 l6">
 								<input id="address" name="address" type="text" required>
 								@if ($errors->has('address'))
 									<span class="helper-text red-text">
@@ -54,6 +54,16 @@
 									</span>
 								@endif
 								<label for="weight">Weight</label>
+							</div>
+							{{-- Cost --}}
+							<div class="input-field col s12 l3">
+								<input id="cost" name="cost" type="text" required>
+								@if ($errors->has('cost'))
+									<span class="helper-text red-text">
+										<strong>{{ $errors->first('cost') }}</strong>
+									</span>
+								@endif
+								<label for="cost">Cost</label>
 							</div>
 							{{-- Description --}}
 							<div class="input-field col s12">

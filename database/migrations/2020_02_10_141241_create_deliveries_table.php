@@ -24,6 +24,7 @@ class CreateDeliveriesTable extends Migration
             $table->string('description')->nullable();
             $table->string('weight')->nullable();
             $table->string('cost')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

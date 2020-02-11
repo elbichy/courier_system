@@ -63,7 +63,10 @@
 
                         <a href="/{{request()->segment(1)}}/{{request()->segment(2)}}" class="breadcrumb">{{(request()->segment(2) == '') ? 'Dashbord' : ucfirst(request()->segment(2))}}</a>
                         @if(request()->segment(3) != '')
-                            <a href="/{{request()->segment(1)}}/{{ request()->segment(2) }}/{{request()->segment(3)}}" class="breadcrumb">{{ strtoupper(request()->segment(3)) }}</a>
+                            <a href="/{{request()->segment(1)}}/{{ request()->segment(2) }}/{{request()->segment(3)}}" class="breadcrumb">{{ ucfirst(request()->segment(3)) }}</a>
+                        @endif
+                        @if(request()->segment(4) != '')
+                            <a href="/{{request()->segment(1)}}/{{ request()->segment(2) }}/{{request()->segment(3)}}/{{request()->segment(4)}}" class="breadcrumb">{{ strtoupper(request()->segment(4)) }}</a>
                         @endif
                     </div>
 
@@ -115,22 +118,23 @@
                     <a href="/dashboard"><i class="material-icons">dashboard</i>DASHBOARD</a>
                 </li>
 
+                {{-- ADMIN MENU --}}
                 @if(auth()->user()->isAdmin)
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
-                    <li class="{{ request()->segment(2) == 'persnnel' ? 'active' : '' }}">
+                    <li class="{{ request()->segment(3) == 'users' ? 'active' : '' }}">
                         <a style="padding:0 32px;" class="collapsible-header">
                             <i class="fas fa-users white-text"></i>USERS<i class="material-icons right">arrow_drop_down</i>
                         </a>
                         <div class="collapsible-body">
                         <ul>
-                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                            <li class="{{(request()->segment(4) == 'approved') ? 'active' : ''}}">
                                 <a href="/dashboard/administrator/users/approved">Approved Users</a>
                             </li>
-                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                            <li class="{{(request()->segment(4) == 'pending') ? 'active' : ''}}">
                                 <a href="/dashboard/administrator/users/pending">Pending Users</a>
                             </li>
-                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                            <li class="{{(request()->segment(4) == 'declined') ? 'active' : ''}}">
                                 <a href="/dashboard/administrator/users/declined">Declined Users</a>
                             </li>
                         </ul>
@@ -140,22 +144,23 @@
                 </li>
                 @endif
                 
+                {{-- ADMIN MENU --}}
                 @if(auth()->user()->isAdmin)
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
-                    <li class="{{ request()->segment(2) == 'persnnel' ? 'active' : '' }}">
+                    <li class="{{ request()->segment(3) == 'delivery' ? 'active' : '' }}">
                         <a style="padding:0 32px;" class="collapsible-header">
                             <i class="fas fa-box-open white-text"></i>DELIVERIES<i class="material-icons right">arrow_drop_down</i>
                         </a>
                         <div class="collapsible-body">
                         <ul>
-                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                            <li class="{{(request()->segment(4) == 'requests') ? 'active' : ''}}">
                                 <a href="/dashboard/administrator/delivery/requests">Delivery Requests</a>
                             </li>
-                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                            <li class="{{(request()->segment(4) == 'completed') ? 'active' : ''}}">
                                 <a href="/dashboard/administrator/delivery/completed">Completed Deliveries</a>
                             </li>
-                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                            <li class="{{(request()->segment(4) == 'cancelled') ? 'active' : ''}}">
                                 <a href="/dashboard/administrator/delivery/cancelled">Cancelled Deliveries</a>
                             </li>
                         </ul>
@@ -165,25 +170,29 @@
                 </li>
                 @endif
                 
+                {{-- USER MENU --}}
                 @if(!auth()->user()->isAdmin)
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
-                    <li class="{{ request()->segment(2) == 'persnnel' ? 'active' : '' }}">
+                    <li class="{{ request()->segment(3) == 'delivery' ? 'active' : '' }}">
                         <a style="padding:0 32px;" class="collapsible-header">
                             <i class="fas fa-box-open white-text"></i>DELIVERIES<i class="material-icons right">arrow_drop_down</i>
                         </a>
                         <div class="collapsible-body">
                         <ul>
-                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                            <li class="{{(request()->segment(4) == 'new') ? 'active' : ''}}">
                                 <a href="/dashboard/user/delivery/new">Book a Delivery</a>
                             </li>
-                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
-                                <a href="/dashboard/user/delivery/requests">Delivery Requests</a>
+                            <li class="{{(request()->segment(4) == 'requests') ? 'active' : ''}}">
+                                <a href="/dashboard/user/delivery/requests">Pending Approvals</a>
                             </li>
-                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                            <li class="{{(request()->segment(4) == 'inprogress') ? 'active' : ''}}">
+                                <a href="/dashboard/user/delivery/inprogress">Deliveries In-progress</a>
+                            </li>
+                            <li class="{{(request()->segment(4) == 'completed') ? 'active' : ''}}">
                                 <a href="/dashboard/user/delivery/completed">Completed Deliveries</a>
                             </li>
-                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                            <li class="{{(request()->segment(4) == 'cancelled') ? 'active' : ''}}">
                                 <a href="/dashboard/user/delivery/cancelled">Cancelled Deliveries</a>
                             </li>
                         </ul>
@@ -193,6 +202,7 @@
                 </li>
                 @endif
 
+                {{-- USER MENU --}}
                 @if(!auth()->user()->isAdmin)
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">

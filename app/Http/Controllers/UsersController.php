@@ -162,7 +162,6 @@ class UsersController extends Controller
         
     }
     
-    
     public function updateUser(Request $request, User $user){
         $user->name = $request->name;
         $user->gender = $request->gender;
@@ -172,6 +171,31 @@ class UsersController extends Controller
         $user->save();
         Alert::success('User Updated!', 'Success!')->autoclose(2500);
         return redirect()->route('approvedUsers');
+    }
+
+    public function editProfile(){
+        $user = auth()->user();
+        if(!auth()->user()->isActive){
+            return 'Admin is yet to approve your account!';
+        }
+        elseif(auth()->user()->isActive == 2){
+            return 'Your approval has been declined';
+        }
+        else{
+            return view('dashboard.users.editProfile', compact(['user']));
+        }
+        
+    }
+
+    public function updateProfile(Request $request){
+        auth()->user()->update([
+            'name' => $request->name,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
+            'email' => $request->email,
+        ]);
+        Alert::success('User Updated!', 'Success!')->autoclose(2500);
+        return redirect()->route('dashboard');
     }
 
     public function deleteUser(User $user, Request $request){
