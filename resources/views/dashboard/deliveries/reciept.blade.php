@@ -65,12 +65,12 @@
 					{{ $order->user->phone }}
 					<br /><br />
 					Date: {{ $order->created_at }}
-					Identifier: {{ $order->RefNo }}
+					Reference No: {{ $order->RefNo }}
 					Status: Paid
 				</pre>
             </td>
             <td align="center">
-				<img src="{{asset('storage/logo.jpg')}}" alt="Logo" sizes="70%">
+				{{-- <img src="{{asset('storage/logo.jpg')}}" alt="Logo" sizes="70%"> --}}
             </td>
             <td align="right" style="width: 40%;">
                 <h3>Courier Management System</h3>

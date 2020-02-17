@@ -24,6 +24,7 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('r
 Route::post('/register', 'Auth\RegisterController@register')->name('register_submit');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::get('/login', 'LandingController@index')->name('login');
+Route::get('/pricelist', 'LandingController@pricelist')->name('priceList');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::group(['prefix' => 'dashboard'], function () {

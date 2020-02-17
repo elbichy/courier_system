@@ -69,6 +69,9 @@
 				<div class="col s12 input-field center">
 					<p>Not registered? <a href="{{route('register')}}">Sign up Here!</a></p>
 				</div>
+				<div class="col s12 input-field center">
+					<p>Check our pricelist <a href="{{route('priceList')}}">Here!</a></p>
+				</div>
 			</form>
 		</div>
 	</div>

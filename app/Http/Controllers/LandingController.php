@@ -19,6 +19,11 @@ class LandingController extends Controller
     {
         return view('landing');
     }
+    
+    public function pricelist()
+    {
+        return view('pricelist');
+    }
 
     /**
      * Show the form for creating a new resource.
