@@ -41,10 +41,12 @@ Route::group(['prefix' => 'dashboard'], function () {
         });
         Route::group(['prefix' => 'delivery'], function () {
             Route::get('/requests', 'DeliveryController@deliveryRequest')->name('deliveryRequest');
+            Route::get('/pending', 'DeliveryController@deliveryPending')->name('deliveryPending');
             Route::get('/completed', 'DeliveryController@deliveryCompleted')->name('deliveryCompleted');
             Route::get('/cancelled', 'DeliveryController@deliveryCancelled')->name('deliveryCancelled');
             Route::get('/{delivery}/approve', 'DeliveryController@approveDelivery')->name('approveDelivery');
-            Route::get('/{delivery}/cancel', 'DeliveryController@approveDelivery')->name('cancelDelivery');
+            Route::get('/{delivery}/cancel', 'DeliveryController@cancelDelivery')->name('cancelDelivery');
+            Route::get('/{delivery}/complete', 'DeliveryController@completeDelivery')->name('completeDelivery');
         });
     });
 
@@ -57,9 +59,10 @@ Route::group(['prefix' => 'dashboard'], function () {
             Route::get('/new', 'DeliveryController@deliveryNew')->name('deliveryNew');
             Route::post('/new', 'DeliveryController@deliveryStore')->name('deliveryStore');
             Route::get('/requests', 'DeliveryController@deliveryRequest')->name('deliveryRequest');
-            Route::get('/inprogress', 'DeliveryController@deliveryInprogress')->name('deliveryInprogress');
+            Route::get('/inprogress', 'DeliveryController@deliveryPending')->name('deliveryInprogress');
             Route::get('/completed', 'DeliveryController@deliveryCompleted')->name('deliveryCompleted');
             Route::get('/cancelled', 'DeliveryController@deliveryCancelled')->name('deliveryCancelled');
+            Route::get('/{delivery}/reciept', 'DeliveryController@requestReciept')->name('requestReciept');
         });
     });
 });

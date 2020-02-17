@@ -28,7 +28,7 @@ class DashboardController extends Controller
     public function index()
     {
         $users = User::where('isActive', 0)->get();
-        $deliveries = Delivery::where('status', 0)->get();
+        $deliveries = Delivery::all();
         if(!auth()->user()->isActive){
             return 'Admin is yet to approve your account!';
         }

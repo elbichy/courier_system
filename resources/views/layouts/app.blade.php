@@ -117,7 +117,36 @@
                 <li class="{{(request()->segment(1) == 'dashboard' && request()->segment(2) == NULL) ? 'active' : ''}}">
                     <a href="/dashboard"><i class="material-icons">dashboard</i>DASHBOARD</a>
                 </li>
-
+                
+                {{-- ADMIN MENU --}}
+                @if(auth()->user()->isAdmin)
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                    <li class="{{ request()->segment(3) == 'delivery' ? 'active' : '' }}">
+                        <a style="padding:0 32px;" class="collapsible-header">
+                            <i class="fas fa-box-open white-text"></i>DELIVERIES<i class="material-icons right">arrow_drop_down</i>
+                        </a>
+                        <div class="collapsible-body">
+                        <ul>
+                            <li class="{{(request()->segment(4) == 'requests') ? 'active' : ''}}">
+                                <a href="/dashboard/administrator/delivery/requests">Delivery Requests</a>
+                            </li>
+                            <li class="{{(request()->segment(4) == 'pending') ? 'active' : ''}}">
+                                <a href="/dashboard/administrator/delivery/pending">Pending Deliveries</a>
+                            </li>
+                            <li class="{{(request()->segment(4) == 'completed') ? 'active' : ''}}">
+                                <a href="/dashboard/administrator/delivery/completed">Completed Deliveries</a>
+                            </li>
+                            <li class="{{(request()->segment(4) == 'cancelled') ? 'active' : ''}}">
+                                <a href="/dashboard/administrator/delivery/cancelled">Cancelled Deliveries</a>
+                            </li>
+                        </ul>
+                        </div>
+                    </li>
+                    </ul>
+                </li>
+                @endif
+                
                 {{-- ADMIN MENU --}}
                 @if(auth()->user()->isAdmin)
                 <li class="no-padding">
@@ -143,33 +172,7 @@
                     </ul>
                 </li>
                 @endif
-                
-                {{-- ADMIN MENU --}}
-                @if(auth()->user()->isAdmin)
-                <li class="no-padding">
-                    <ul class="collapsible collapsible-accordion">
-                    <li class="{{ request()->segment(3) == 'delivery' ? 'active' : '' }}">
-                        <a style="padding:0 32px;" class="collapsible-header">
-                            <i class="fas fa-box-open white-text"></i>DELIVERIES<i class="material-icons right">arrow_drop_down</i>
-                        </a>
-                        <div class="collapsible-body">
-                        <ul>
-                            <li class="{{(request()->segment(4) == 'requests') ? 'active' : ''}}">
-                                <a href="/dashboard/administrator/delivery/requests">Delivery Requests</a>
-                            </li>
-                            <li class="{{(request()->segment(4) == 'completed') ? 'active' : ''}}">
-                                <a href="/dashboard/administrator/delivery/completed">Completed Deliveries</a>
-                            </li>
-                            <li class="{{(request()->segment(4) == 'cancelled') ? 'active' : ''}}">
-                                <a href="/dashboard/administrator/delivery/cancelled">Cancelled Deliveries</a>
-                            </li>
-                        </ul>
-                        </div>
-                    </li>
-                    </ul>
-                </li>
-                @endif
-                
+
                 {{-- USER MENU --}}
                 @if(!auth()->user()->isAdmin)
                 <li class="no-padding">

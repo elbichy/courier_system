@@ -25,6 +25,7 @@ class DeliveryController extends Controller
             'address' => $request->address,
             'weight' => $request->weight,
             'cost' => $request->cost,
+            'tellerNumber' => $request->tellerNumber,
             'description' => $request->description
         ]);
 
@@ -37,7 +38,7 @@ class DeliveryController extends Controller
         return view('dashboard.deliveries.pending', compact(['deliveries']));
     }
 
-    public function deliveryInprogress(){
+    public function deliveryPending(){
         $deliveries = Delivery::where('status', 1)->get();
         return view('dashboard.deliveries.Inprogress', compact(['deliveries']));
     }
@@ -51,10 +52,40 @@ class DeliveryController extends Controller
         $deliveries = Delivery::where('status', 3)->get();
         return view('dashboard.deliveries.cancelled', compact(['deliveries']));
     }
-    
 
+    public function approveDelivery(Delivery $delivery){
+        $delivery->update([
+            'status' => 1
+        ]);
+        
+        Alert::success('Request approved successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
+    }
 
+    public function cancelDelivery(Delivery $delivery){
+        $delivery->update([
+            'status' => 3
+        ]);
+        
+        Alert::success('Request approved successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
+    }
 
+    public function completeDelivery(Delivery $delivery){
+        $delivery->update([
+            'status' => 2
+        ]);
+        
+        Alert::success('Request approved successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
+    }
+
+    public function requestReciept(Delivery $delivery){
+        $myDelivery = $delivery->with('user')->first();
+        $pdf = app('dompdf.wrapper')->loadView('dashboard.deliveries.reciept', ['order' => $myDelivery]);
+        return $pdf->stream('invoice.pdf');
+        // return view('dashboard.deliveries.reciept', compact(['myDelivery']));
+    }
 
     public function myDeliveryRequest(){
         $deliveries = auth()->user()->deliveries()->where('status', 0)->get();

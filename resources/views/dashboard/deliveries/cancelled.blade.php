@@ -16,6 +16,7 @@
                                 <th>Address</th>
                                 <th>Weight</th>
                                 <th>Cost</th>
+                                <th>Teller No.</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -28,6 +29,7 @@
                                     <td>{{ ucwords($delivery->address) }}</td>
                                     <td>{{ ucwords($delivery->weight) }}</td>
                                     <td>{{ ucwords($delivery->cost) }}</td>
+                                    <td>{{ ucwords($delivery->tellerNumber) }}</td>
                                     <td>
                                         <a href="{{ route('approveUser', $delivery->id) }}" class="btn waves-effect green waves-light">Reciept</a>
                                         <a href="{{ route('declineUser', $delivery->id) }}" class="btn waves-effect red waves-light">Cancel</a>
@@ -36,7 +38,7 @@
                             @endforeach
                             @if($deliveries->count() < 1)
                                 <tr>
-                                    <td colspan="7" style="text-align:center;">No Data Available</td>
+                                    <td colspan="8" style="text-align:center;">No Data Available</td>
                                 </tr>
                             @endif
                         </tbody>

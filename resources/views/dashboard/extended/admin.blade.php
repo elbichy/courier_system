@@ -70,11 +70,13 @@
 				<th>Address</th>
 				<th>Weight</th>
 				<th>Cost</th>
+				<th>Teller No.</th>
 				<th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach($deliveries as $delivery)
+			@if($delivery->status == 0)
 				<tr>
 					<td>{{ $delivery->RefNo }}</td>
 					<td>{{ ucwords($delivery->senderName) }}</td>
@@ -83,17 +85,18 @@
 					<td>{{ ucwords($delivery->address) }}</td>
 					<td>{{ ucwords($delivery->weight) }}</td>
 					<td>{{ ucwords($delivery->cost) }}</td>
+					<td>{{ ucwords($delivery->tellerNumber) }}</td>
 					<td>
 						<a href="{{ route('approveDelivery', $delivery->id) }}" class="btn waves-effect green waves-light">Approve</a>
 						<a href="{{ route('cancelDelivery', $delivery->id) }}" class="btn waves-effect red waves-light">Cancel</a>
 					</td>
 				</tr>
-			@endforeach
-			@if($deliveries->count() < 1)
+			@else
 				<tr>
-					<td colspan="7" style="text-align:center;">No Data Available</td>
+					<td colspan="9" style="text-align:center;">No Data Available</td>
 				</tr>
 			@endif
+			@endforeach
 		</tbody>
 	</table>
 </div>

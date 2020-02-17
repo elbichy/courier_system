@@ -65,8 +65,19 @@
 								@endif
 								<label for="cost">Cost</label>
 							</div>
+							{{-- Teller number --}}
+							<div class="input-field col s12 l4">
+								<input id="tellerNumber" name="tellerNumber" type="text" required>
+								@if ($errors->has('tellerNumber'))
+									<span class="helper-text red-text">
+										<strong>{{ $errors->first('tellerNumber') }}</strong>
+									</span>
+								@endif
+								<label for="tellerNumber">Teller No.</label>
+							</div>
+							
 							{{-- Description --}}
-							<div class="input-field col s12">
+							<div class="input-field col s12 l8">
 								<textarea id="description" name="description" class="materialize-textarea"></textarea>
 								@if ($errors->has('description'))
 									<span class="helper-text red-text">
