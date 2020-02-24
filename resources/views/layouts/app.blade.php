@@ -106,12 +106,9 @@
                         <a href="#user"><img class="circle" src="{{asset('storage/logo.jpg')}}"></a>
                     
                         {{-- BUSINESS NAME --}}
-                        <a href="#name"><span class="white-text name">
-                            Company Name
+                        <a href="#name"><span class="white-text name"  style="font-size:16px;">
+                            Courier Management System
                         </span></a>
-
-                        {{-- BUSINESS BRANCH AND ADDRESS --}}
-                        <a href="#email"><span class="white-text email">Courier Management System</span></a>
                     </div>
                 </li>
                 <li class="{{(request()->segment(1) == 'dashboard' && request()->segment(2) == NULL) ? 'active' : ''}}">

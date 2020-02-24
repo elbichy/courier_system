@@ -16,7 +16,10 @@ class CreateDeliveriesTable extends Migration
         Schema::create('deliveries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('senderName')->nullable();
+            $table->string('recieverName')->nullable();
             $table->bigInteger('user_id');
+            $table->string('gender')->nullable();
+            $table->string('phone')->nullable();
             $table->string('state')->nullable();
             $table->string('lga')->nullable();
             $table->string('address')->nullable();

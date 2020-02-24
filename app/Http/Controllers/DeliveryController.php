@@ -20,6 +20,9 @@ class DeliveryController extends Controller
         $delivery = auth()->user()->deliveries()->create([
             'RefNo' => time() . '-' . auth()->user()->id,
             'senderName' => $request->senderName,
+            'recieverName' => $request->recieverName,
+            'gender' => $request->gender,
+            'phone' => $request->phone,
             'state' => $request->state,
             'lga' => $request->lga,
             'address' => $request->address,

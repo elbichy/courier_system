@@ -38,8 +38,7 @@
 		<div class="card form_wrap">
 			<div class="heading">
 				<img src="{{ asset('storage/logo.jpg') }}" alt="logo" width="100px" height="100px">
-				<h6 class="">Company Name</h6>
-				<p class="">Courier management system</p>
+				<h6 class="" style="font-size:16px;">Courier management system</h6>
 			</div>
 			<form action="{{ route('login') }}" method="POST" class="form row" id="login_form">
 				@csrf
