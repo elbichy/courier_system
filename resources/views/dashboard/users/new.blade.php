@@ -17,7 +17,7 @@
 							</div>
 							{{-- Reciever name --}}
 							<div class="input-field col s12 l4">
-								<input id="recieverName" name="recieverName" type="text" required readonly>
+								<input id="recieverName" name="recieverName" type="text" required>
 								@if ($errors->has('recieverName'))
 									<span class="helper-text red-text">
 										<strong>{{ $errors->first('recieverName') }}</strong>

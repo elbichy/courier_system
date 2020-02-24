@@ -63,11 +63,13 @@
 	<table class="highlight responsive-table centered">
 		<thead>
 			<tr>
-				<th>Ref No.</th>
 				<th>Sender</th>
-				<th>State</th>
-				<th>LGA</th>
-				<th>Address</th>
+				<th>Reciever</th>
+				<th>R.Gender</th>
+				<th>R.Phone</th>
+				<th>R.State</th>
+				<th>R.LGA</th>
+				<th>R.Address</th>
 				<th>Weight</th>
 				<th>Cost</th>
 				<th>Teller No.</th>
@@ -78,8 +80,10 @@
 			@foreach($deliveries as $delivery)
 			@if($delivery->status == 0)
 				<tr>
-					<td>{{ $delivery->RefNo }}</td>
 					<td>{{ ucwords($delivery->senderName) }}</td>
+					<td>{{ ucwords($delivery->recieverName) }}</td>
+					<td>{{ ucwords($delivery->gender) }}</td>
+					<td>{{ ucwords($delivery->phone) }}</td>
 					<td>{{ ucwords($delivery->state) }}</td>
 					<td>{{ ucwords($delivery->lga) }}</td>
 					<td>{{ ucwords($delivery->address) }}</td>
@@ -91,10 +95,10 @@
 						<a href="{{ route('cancelDelivery', $delivery->id) }}" class="btn waves-effect red waves-light">Cancel</a>
 					</td>
 				</tr>
-			@else
+			{{-- @else
 				<tr>
 					<td colspan="9" style="text-align:center;">No Data Available</td>
-				</tr>
+				</tr> --}}
 			@endif
 			@endforeach
 		</tbody>

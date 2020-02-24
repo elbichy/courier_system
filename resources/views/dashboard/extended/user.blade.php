@@ -63,12 +63,14 @@
 		<thead>
 			<tr>
 				<th>Ref No.</th>
-				<th>State</th>
-				<th>LGA</th>
-				<th>Address</th>
+				<th>Reciever Name</th>
+				<th>R.Gender</th>
+				<th>R.Phone</th>
+				<th>R.State</th>
+				<th>R.LGA</th>
+				<th>R.Address</th>
 				<th>Weight</th>
 				<th>Cost</th>
-				<th>Teller No.</th>
 				<th>Status</th>
 				<th>Action</th>
 			</tr>
@@ -78,12 +80,14 @@
 			@if($delivery->status == 0 || $delivery->status == 1)
 				<tr>
 					<td>{{ $delivery->RefNo }}</td>
+					<td>{{ ucwords($delivery->recieverName) }}</td>
+					<td>{{ ucwords($delivery->gender) }}</td>
+					<td>{{ ucwords($delivery->phone) }}</td>
 					<td>{{ ucwords($delivery->state) }}</td>
 					<td>{{ ucwords($delivery->lga) }}</td>
 					<td>{{ ucwords($delivery->address) }}</td>
 					<td>{{ ucwords($delivery->weight) }}</td>
 					<td>{{ ucwords($delivery->cost) }}</td>
-					<td>{{ ucwords($delivery->tellerNumber) }}</td>
 					<td>{{ $delivery->status == 0 ? 'Pending' : 'In-progress' }}</td>
 					<td>
 						@if($delivery->status == 1)
