@@ -176,7 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Skydiver\LaravelMaterializeCSS\MaterializeCSSServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-        // Barryvdh\DomPDF\ServiceProvider::class,
+        'providers' => [Barryvdh\DomPDF\ServiceProvider::class],
     ],
 
     /*
@@ -229,7 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'MaterializeCSS' => Skydiver\LaravelMaterializeCSS\MaterializeCSS::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
-        // 'PDF' => Barryvdh\DomPDF\Facade::class,
+        'aliases' => ['PDF' => Barryvdh\DomPDF\Facade::class]
     ],
 
 ];
