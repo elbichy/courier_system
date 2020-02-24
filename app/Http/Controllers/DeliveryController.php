@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Delivery;
 use Illuminate\Http\Request;
 use Alert;
-use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
 class DeliveryController extends Controller
 {
     public function __construct()
