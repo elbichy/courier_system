@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Delivery;
 use Illuminate\Http\Request;
 use Alert;
-
+use PDF;
 class DeliveryController extends Controller
 {
     public function __construct()
@@ -85,7 +85,8 @@ class DeliveryController extends Controller
 
     public function requestReciept(Delivery $delivery){
         $myDelivery = $delivery->with('user')->first();
-        $pdf = app('dompdf.wrapper')->loadView('dashboard.deliveries.reciept', ['order' => $myDelivery]);
+        $pdf = PDF::loadView('dashboard.deliveries.reciept', ['order' => $myDelivery]);
+        // $pdf->loadView('dashboard.deliveries.reciept', ['order' => $myDelivery]);
         return $pdf->stream('invoice.pdf');
         // return view('dashboard.deliveries.reciept', compact(['myDelivery']));
     }
