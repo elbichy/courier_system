@@ -85,9 +85,10 @@ class DeliveryController extends Controller
 
     public function requestReciept(Delivery $delivery){
         $myDelivery = $delivery->with('user')->first();
-        $pdf = PDF::loadView('dashboard.deliveries.reciept', ['order' => $myDelivery]);
+        return view('dashboard.deliveries.reciept', compact(['myDelivery']));
+        // $pdf = PDF::loadView('dashboard.deliveries.reciept', ['order' => $myDelivery]);
         // $pdf->loadView('dashboard.deliveries.reciept', ['order' => $myDelivery]);
-        return $pdf->stream('invoice.pdf');
+        // return $pdf->stream('invoice.pdf');
         // return view('dashboard.deliveries.reciept', compact(['myDelivery']));
     }
 

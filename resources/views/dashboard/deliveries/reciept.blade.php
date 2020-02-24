@@ -53,19 +53,19 @@
         }
     </style>
 </head>
-<body>
+<body onload="window.print()">
 
 <div class="information">
     <table width="100%">
         <tr>
             <td align="left" style="width: 40%;">
-				<h3>{{ $order->user->name }}</h3>
+				<h3>{{ $myDelivery->user->name }}</h3>
                 <pre>
-					{{ $order->user->email }}
-					{{ $order->user->phone }}
+					{{ $myDelivery->user->email }}
+					{{ $myDelivery->user->phone }}
 					<br /><br />
-					Date: {{ $order->created_at }}
-					Reference No: {{ $order->RefNo }}
+					Date: {{ $myDelivery->created_at }}
+					Reference No: {{ $myDelivery->RefNo }}
 					Status: Paid
 				</pre>
             </td>
@@ -98,9 +98,9 @@
         </thead>
         <tbody>
         <tr>
-			<td>{{ $order->description }}</td>
+			<td>{{ $myDelivery->description }}</td>
             <td>1</td>
-            <td align="right">NGN{{ $order->cost }}</td>
+            <td align="right">NGN{{ $myDelivery->cost }}</td>
         </tr>
         </tbody>
 
@@ -108,7 +108,7 @@
         <tr>
             <td colspan="1"></td>
             <td align="left">Total</td>
-            <td align="right" class="gray">NGN{{ $order->cost }}</td>
+            <td align="right" class="gray">NGN{{ $myDelivery->cost }}</td>
         </tr>
         </tfoot>
     </table>
